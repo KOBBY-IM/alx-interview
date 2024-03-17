@@ -5,6 +5,9 @@
 def canUnlockAll(boxes):
     """A function to check if all locked boxes can be unlocked
     """
+    #check if boxes list is empty
+    if not boxes:
+        return False
 
     # Create a set to keep track of the unlocked boxes
     unlocked_boxes = set([0])
