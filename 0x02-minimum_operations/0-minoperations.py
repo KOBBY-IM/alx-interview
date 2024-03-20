@@ -1,38 +1,36 @@
 #!/usr/bin/python3
-""" minimum operations"""
+"""Minimum operations to achieve n H characters in a file."""
 
 
 def minOperations(n):
     """
-    Calculate the fewest number of operations
-    needed to result in exactly n H characters in the file.
+    Calculate the fewest number of operations needed to achieve exactly
+    n H characters in the file.
 
     Args:
-    - n: An integer representing the desired number of H characters
+        n (int): The desired number of H characters.
 
     Returns:
-    - An integer representing the fewest number of operations
-    needed to achieve n H characters
-    - If n is impossible to achieve, returns 0
+        int: The minimum number of operations needed to achieve n H characters.
+             If n is impossible to achieve, returns 0.
     """
+    if n == 1:
+        return 0  # Base case: Already one char is present
 
-    # Check if n is less than or equal to 1
-    if a <= 1:
-        return 0
+    # Initialize a list to store min operations needed
+    # for each number of chars
+    a = [float('inf')] * (n + 1)
+    a[1] = 0  # Base case: No operations needed for one char
 
-    # Initialize the variable to count the number of operations needed
-    op = 0
-    # Start with the smallest prime divisor
-    div = 2
+    # Iterate through each possible number of chars
+    for i in range(2, n + 1):
+        # Try all possible lengths of copied substring
+        for j in range(1, i):
+            # Check if the current length is a divisor of i
+            if i % j == 0:
+                # Update the min operations needed
+                a[i] = min(a[i], a[j] + (i // j))
 
-    # Iterate until n is reduced to 1
-    while a > 1:
-        # If the current divisor divides n, repeatedly divide n by that divisor
-        while a % div == 0:
-            op += div
-            a //= div
-
-        # Move to the next divisor
-        div += 1
-
-    return op
+    # If the solution is found, return the min operations for n H chars
+    # Otherwise, return 0 indicating it's impossible to achieve n chars
+    return a[n] if a[n] != float('inf') else 0
