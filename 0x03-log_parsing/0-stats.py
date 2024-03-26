@@ -11,8 +11,8 @@ def parse_log_line(line):
     if len(words) == 7 and words[2] == "GET" and \
         words[3] == "/projects/260" and words[5].isdigit() and \
             words[6].isdigit():
-        return int(words[6]), words[5]]
-    return None, None
+        return int(words[6]), words[5]
+        return None, None
 
 
 def update_metrics(file_size, codes, file_size_increment, code):
