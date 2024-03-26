@@ -8,11 +8,9 @@ import sys
 def parse_log_line(line):
     """Parses a log line in the specified format"""
     words = line.split()
-    if len(words) != 8:
-        return None, None
-    if words[2] != "GET" or words[3] != "/projects/260" or not words[5].isdigit() or not words[6].isdigit():
-        return None, None
-
+    if len(words) == 8 and words[2] == "GET" and \
+        words[3] == "/projects/260" and words[5].isdigit() and \
+            words[6].isdigit():
         return int(words[6]), words[7]
     return None, None
 
